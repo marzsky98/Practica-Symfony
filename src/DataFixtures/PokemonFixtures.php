@@ -9,6 +9,7 @@ USE App\Entity\Pokemon;
 use App\Entity\Types;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 
+
 class PokemonFixtures extends Fixture implements FixtureGroupInterface
 {
     
@@ -56,6 +57,20 @@ class PokemonFixtures extends Fixture implements FixtureGroupInterface
                             echo "no stat ingresado";
                             break;
                     }
+                }
+
+                $abilityEntity = new Abilities;
+                foreach($pokemonData['abilities'] as $ability){
+                    
+                    $abilityEntity->setName($ability['ability']['name']);
+                    $pokemonEntity->addAbility($abilityEntity);
+                }
+
+                $typeEntity = new Types;
+                foreach($pokemonData['types'] as $type){
+                    
+                    $typeEntity->setName($type['type']['name']);
+                    $pokemonEntity->addType($typeEntity);
                 }
                 /*foreach($pokemonData['types'] as $type){
                     $pokemonEntity->addType($type['type']['name']);

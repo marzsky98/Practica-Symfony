@@ -54,7 +54,7 @@ class AbilitiesRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-    public function findOneByName($value): ?Abilities
+    /*public function findOneByName($value): ?Abilities
     {
         return $this->createQueryBuilder('a')
                     ->andWhere('a.Ability = :name')
@@ -62,5 +62,5 @@ class AbilitiesRepository extends ServiceEntityRepository
                     ->getQuery()
                     ->getOneOrNullResult()
         ;
-    }
+    }*/
 }

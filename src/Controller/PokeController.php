@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Pokemon;
+use App\Repository\PokemonRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,11 +15,13 @@ class PokeController extends AbstractController
     #[Route('/poke', name: 'app_poke')]
     public function index(): JsonResponse
     {
+       
         return $this->json([
                             'Status' => 'Funcionando chingon',
                             'path' => 'src/Controller/PokeController.php',
                             ]);
     }
+
  /*
     #[Route('/Types', name: 'ShowTypes')] 
     public function ListAllTypes(): JsonResponse{
@@ -69,48 +73,6 @@ class PokeController extends AbstractController
        //var_dump($decoded);
        curl_close($curl);
        return $this->json($decoded);
-    }
-
-    #[Route('/SinglePokemon/{IdOrName}', name: 'ShowSinglePokemon')]
-    public function ShowSinglePokemon($IdOrName): JsonResponse{
-
-            $curl = curl_init();
-            curl_setopt($curl, CURLOPT_URL, "https://pokeapi.co/api/v2/pokemon/{$IdOrName}");
-            curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-            $result = curl_exec($curl);
-            curl_close($curl);
-            $pokemonData = json_decode($result, true);
-            //var_dump($pokemonData);
-
-            if(is_array($pokemonData)){
-
-                $id = $pokemonData['id'];
-                $name = $pokemonData['name'];                                                         
-                $base_experience = $pokemonData['base_experience'];                                   
-                $height = $pokemonData['height'];                                                     
-                $weight = $pokemonData['weight'];
-
-                foreach($pokemonData['stats'] as $stat){
-                    $hp=$stat['base_stat'];
-                    $attack=$stat['base_stat'];
-                    $defense=$stat['base_stat'];
-                    $spAttack=$stat['base_stat'];
-                    $spDefense=$stat['base_stat'];
-                    $speed=$stat['base_stat'];
-                }
-                $filteredPokemonData = [
-                    'id' => $id,
-                    'name' => $name,
-                    'base_experience' => $base_experience,
-                    'height' => $height,
-                    'weight' => $weight,
-                    'stat' => $hp.",".$attack.",".$defense.",".$spAttack.",".$spDefense.",".$speed,
-                    
-                ];
-            }
-        var_dump($filteredPokemonData);
-        return new JsonResponse($filteredPokemonData);
-        //return $this->json($result);
     }
         */
 

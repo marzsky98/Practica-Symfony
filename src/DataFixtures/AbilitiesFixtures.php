@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Abilities;
+use App\Entity\Pokemon;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
@@ -19,10 +20,10 @@ class AbilitiesFixtures extends Fixture implements FixtureGroupInterface
         $abilityData = json_decode($result, true);
 
         foreach ($abilityData['results'] as $ability) {
-            $typeEntity = new Abilities();                                               #convertir name en PK
-            $typeEntity->setName($ability['name']);
+            $abilityEntity = new Abilities();                                               #convertir name en PK
+            $abilityEntity->setName($ability['name']);
 
-            $manager->persist($typeEntity);
+            $manager->persist($abilityEntity);
         }   
         $manager->flush();
     }
